@@ -28,7 +28,7 @@ $(document).ready(function (){
             '    <input type="text" id="userSurname" class ="userSurname" name="userSurname" size="40">\n' +
             '\n' +
             '    <h4>Отчество</h4>\n' +
-            '    <input  type="text" class="patronomic" id="patronymic" name="patronymic" size="40">\n' +
+            '    <input  type="text" class="userPatronymic" id="patronymic" name="patronymic" size="40">\n' +
             '\n' +
             '    <div><h4>Пол:</h4>\n' +
             '   <input type="radio" name="gender" value="Man">Мужчина\n' +
@@ -106,7 +106,7 @@ $(document).ready(function (){
         function validateForm(){
             var name = $('.userName')
             var surname = $('.userSurname')
-            var patr = $('.patronymic')
+            var patr = $('.userPatronymic')
             var v_name = false
             var s_name = false
             var patr_chek = false
@@ -123,10 +123,14 @@ $(document).ready(function (){
                     }
 
                 })
+                console.log(patr)
                 $.each(patr,function (key,value){
                     var patr_data = $(value)
-                    if (patr_data.val()>0){
+                    console.log(patr_data.val())
+                    if (patr_data.val().length>0){
+                        console.log(patr_data.val())
                         if(patr_data.val()[0]===patr_data.val()[0].toLowerCase()){
+                            console.log(patr_data.val().length)
                             patr_data.after('<span class="text-error"> Введите  с большой буквы </span>')
                             patr_chek = true
 
@@ -135,6 +139,7 @@ $(document).ready(function (){
 
                 })
             })
+            console.log(v_name,s_name,patr_chek)
             return (v_name||s_name||patr_chek)
         }
     })
